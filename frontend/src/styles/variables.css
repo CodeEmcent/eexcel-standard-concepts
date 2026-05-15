@@ -1,0 +1,14 @@
+:root {
+  --navy:       #0D1F3C;
+  --navy-light: #162d52;
+  --gold:       #C8860A;
+  --gold-light: #E8A020;
+  --gold-pale:  #FDF3E3;
+  --white:      #FFFFFF;
+  --off-white:  #F8F6F2;
+  --gray-100:   #F2F0EC;
+  --gray-200:   #E0DDD7;
+  --gray-400:   #9A9590;
+  --gray-600:   #5C5852;
+  --gray-800:   #2A2824;
+}
