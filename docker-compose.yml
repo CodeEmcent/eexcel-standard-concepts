@@ -1,0 +1,66 @@
+version: '3.9'
+
+# ══════════════════════════════════════════════
+# E. Excel Standard Concepts
+# Local Development — Docker Compose
+# ══════════════════════════════════════════════
+
+services:
+
+  # ── PostgreSQL Database ──────────────────────
+  db:
+    image: postgres:15-alpine
+    container_name: eexcel_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: eexcel_db
+      POSTGRES_USER: eexcel_user
+      POSTGRES_PASSWORD: eexcel_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U eexcel_user -d eexcel_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Django Backend ───────────────────────────
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: eexcel_backend
+    restart: unless-stopped
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+      - ./backend/media:/app/media
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ── React Frontend ───────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: eexcel_frontend
+    restart: unless-stopped
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    env_file:
+      - .env
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
