@@ -59,7 +59,7 @@ const products = [
     name: 'Overhead Silicon Materials',
     description:
       'Silicon composite disc insulators, fuse cutout assemblies, strain clamps, suspension clamps and overhead line hardware.',
-    featured: false,
+    featured: true,
     inStock: true,
   },
   {
@@ -68,7 +68,7 @@ const products = [
     name: 'Aluminium Conductor',
     description:
       'ACSR, AAC and AAAC aluminium conductors on large industrial spools for overhead transmission and distribution line projects.',
-    featured: false,
+    featured: true,
     inStock: true,
   },
   {
