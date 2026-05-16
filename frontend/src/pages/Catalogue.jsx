@@ -1,23 +1,26 @@
 import {
   Zap, Plug, Cable, ToggleLeft, Globe,
-  Bolt, CircuitBoard, Cpu, Lightbulb,
+  Bolt, CircuitBoard, Cpu, Lightbulb, Loader,
 } from 'lucide-react';
-import ProductCard from '../components/catalogue/ProductCard';
-import products from '../data/products';
+import ProductCard  from '../components/catalogue/ProductCard';
+import useFetch     from '../hooks/useFetch';
+import { API }      from '../utils/api';
 
-const productIcons = {
-  1: Zap,
-  2: Plug,
-  3: Cable,
-  4: CircuitBoard,
-  5: Cpu,
-  6: ToggleLeft,
-  7: Globe,
-  8: Bolt,
-  9: Lightbulb,
+const slugIconMap = {
+  'earthing-materials':      Zap,
+  'distribution-transformers': Plug,
+  'armoured-cables':         Cable,
+  'feeder-pillar':           CircuitBoard,
+  'single-cables':           Cpu,
+  'switches-sockets':        ToggleLeft,
+  'overhead-silicon':        Globe,
+  'aluminium-conductor':     Bolt,
+  'chandelier-lighting':     Lightbulb,
 };
 
 const Catalogue = () => {
+  const { data: categories, loading, error } = useFetch(API.catalogue);
+
   return (
     <>
       {/* ── Page Hero ── */}
@@ -49,15 +52,44 @@ const Catalogue = () => {
       {/* ── Product Grid ── */}
       <section className="bg-off-white py-20">
         <div className="max-w-7xl mx-auto px-15">
-          <div className="grid grid-cols-3 gap-5">
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                icon={productIcons[product.id]}
-              />
-            ))}
-          </div>
+
+          {/* Loading state */}
+          {loading && (
+            <div className="flex items-center justify-center py-20">
+              <Loader size={32} strokeWidth={1.5} className="text-gold animate-spin" />
+              <span className="ml-3 text-gray-500 text-base">Loading catalogue...</span>
+            </div>
+          )}
+
+          {/* Error state */}
+          {error && (
+            <div className="text-center py-20">
+              <p className="text-red-500 text-base mb-2">Unable to load catalogue.</p>
+              <p className="text-gray-400 text-sm">{error}</p>
+            </div>
+          )}
+
+          {/* Categories grid */}
+          {categories && (
+            <div className="grid grid-cols-3 gap-5">
+              {categories.map((category) => {
+                const Icon = slugIconMap[category.slug] || Zap;
+                return (
+                  <ProductCard
+                    key={category.id}
+                    product={{
+                      id:          category.id,
+                      name:        category.name,
+                      description: category.description,
+                      inStock:     true,
+                    }}
+                    icon={Icon}
+                  />
+                );
+              })}
+            </div>
+          )}
+
         </div>
       </section>
     </>
