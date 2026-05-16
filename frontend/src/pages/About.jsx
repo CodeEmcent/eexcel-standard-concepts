@@ -1,8 +1,12 @@
+import AboutHero from '../components/about/AboutHero';
+import AboutBody from '../components/about/AboutBody';
+
 const About = () => {
   return (
-    <main>
-      <p>About page — coming soon</p>
-    </main>
+    <>
+      <AboutHero />
+      <AboutBody />
+    </>
   );
 };
 
