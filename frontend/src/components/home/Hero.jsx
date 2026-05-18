@@ -1,21 +1,19 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import { generalEnquiryUrl } from '../../utils/whatsapp';
+import heroBg from '../../assets/images/hero-bg.jpg';
 import business from '../../data/business';
 
 const Hero = () => {
   return (
     <section className="relative min-h-[88vh] flex items-center overflow-hidden bg-navy">
 
-      {/* ── Background Grid ── */}
+      {/* Real background image */}
       <div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px',
+          backgroundImage: `url(${heroBg})`,
+          filter: 'brightness(0.25)',
         }}
       />
 
@@ -28,11 +26,11 @@ const Hero = () => {
       />
 
       {/* ── Content ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-15 py-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-15 py-16 md:py-20">
         <div className="max-w-3xl">
 
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-gold/15 border border-gold/40 rounded-full px-4 py-1.5 mb-8">
+          <div className="inline-flex items-center gap-2 bg-gold/15 border border-gold/40 rounded-full px-4 py-1.5 mb-6 md:mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-gold-light animate-pulse" />
             <span className="text-gold-light text-xs font-semibold uppercase tracking-widest">
               Lagos Island · Nigeria
@@ -40,24 +38,24 @@ const Hero = () => {
           </div>
 
           {/* Title */}
-          <h1 className="font-serif text-6xl font-black text-white leading-[1.05] mb-4">
+          <h1 className="font-serif text-4xl md:text-6xl font-black text-white leading-[1.05] mb-4">
             Nigeria's Trusted
             <em className="not-italic text-gold block">Electrical Supply</em>
             Partner
           </h1>
 
           {/* Subtitle */}
-          <p className="text-white/60 text-lg leading-relaxed max-w-xl mb-3">
+          <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-xl mb-3">
             {business.tagline} — direct to contractors, builders and firms across Lagos.
           </p>
 
           {/* RC */}
-          <p className="text-white/30 text-xs tracking-wide mb-10">
+          <p className="text-white/30 text-xs tracking-wide mb-8 md:mb-10">
             CAC Registered · RC: {business.rc} · {business.address}
           </p>
 
           {/* CTAs */}
-          <div className="flex items-center gap-6 flex-wrap">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <Link
               to="/catalogue"
               className="inline-flex items-center gap-2 bg-gold text-navy font-bold text-sm px-8 py-4 rounded hover:bg-gold-light transition-colors duration-200 no-underline"
@@ -69,7 +67,7 @@ const Hero = () => {
               href={generalEnquiryUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-white/80 text-sm font-medium border-b border-white/30 pb-0.5 hover:text-gold-light hover:border-gold-light transition-colors duration-200 no-underline"
+              className="inline-flex items-center gap-2 text-white text-sm font-semibold border border-white/40 px-8 py-4 rounded hover:bg-white/10 hover:border-white transition-colors duration-200 no-underline w-full sm:w-auto justify-center"
             >
               <MessageCircle size={16} strokeWidth={2} />
               WhatsApp Us

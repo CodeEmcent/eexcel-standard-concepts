@@ -48,7 +48,7 @@ const WhyUs = () => {
           Built on trust. Backed by stock.
         </h2>
 
-        <div className="grid grid-cols-4 gap-7">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7">
           {reasons.map(({ icon: Icon, number, title, desc }) => (
             <div
               key={number}

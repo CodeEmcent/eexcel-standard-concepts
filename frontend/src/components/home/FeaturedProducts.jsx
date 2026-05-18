@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, MessageCircle, Zap, Plug, Cable, ToggleLeft, Globe, Bolt, Loader } from 'lucide-react';
 import { productEnquiryUrl } from '../../utils/whatsapp';
+import { categoryImages } from '../../assets/images';
 import useFetch from '../../hooks/useFetch';
 import { API } from '../../utils/api';
 
@@ -24,7 +25,7 @@ const FeaturedProducts = () => {
       <div className="max-w-7xl mx-auto px-15">
 
         {/* Header */}
-        <div className="flex items-end justify-between mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <p className="text-gold text-xs font-bold uppercase tracking-[3px] mb-3">
               What We Supply
@@ -59,7 +60,7 @@ const FeaturedProducts = () => {
 
         {/* Grid */}
         {!loading && !error && (
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {featured.map((category) => {
               const Icon = slugIconMap[category.slug] || Zap;
               return (
@@ -68,8 +69,21 @@ const FeaturedProducts = () => {
                   className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-200"
                 >
                   {/* Icon panel */}
-                  <div className="h-48 bg-gray-100 flex items-center justify-center relative">
-                    <Icon size={56} strokeWidth={1} className="text-navy/20" />
+                  <div className="h-48 overflow-hidden relative">
+                    {(() => {
+                      const img = categoryImages[category.slug];
+                      return img ? (
+                        <img
+                          src={img}
+                          alt={category.name}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                          <Icon size={56} strokeWidth={1} className="text-navy/20" />
+                        </div>
+                      );
+                    })()}
                     <span className="absolute top-3 right-3 bg-gold text-navy text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
                       In Stock
                     </span>
