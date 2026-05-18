@@ -1,13 +1,26 @@
 import { MessageCircle } from 'lucide-react';
 import { productEnquiryUrl } from '../../utils/whatsapp';
+import { categoryImages } from '../../assets/images/index.js';
 
 const ProductCard = ({ product, icon: Icon }) => {
+  const image = categoryImages[product.slug] || null;
+
   return (
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-200">
 
-      {/* Icon Panel */}
-      <div className="h-48 bg-gray-100 flex items-center justify-center relative">
-        {Icon && <Icon size={60} strokeWidth={1} className="text-navy/20" />}
+      {/* Image Panel */}
+      <div className="h-48 overflow-hidden relative">
+        {image ? (
+          <img
+            src={image}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-400 hover:scale-105"
+          />
+        ) : (
+          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+            {Icon && <Icon size={60} strokeWidth={1} className="text-navy/20" />}
+          </div>
+        )}
         {product.inStock && (
           <span className="absolute top-3 right-3 bg-gold text-navy text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
             In Stock

@@ -28,7 +28,7 @@ const Footer = () => {
     <footer className="bg-[#080F1E]">
 
       {/* ── Main Grid ── */}
-      <div className="max-w-7xl mx-auto px-15 pt-14 pb-10 grid grid-cols-4 gap-12 border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-6 md:px-15 pt-14 pb-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-b border-white/10">
 
         {/* Brand */}
         <div>
@@ -109,7 +109,7 @@ const Footer = () => {
       </div>
 
       {/* ── Bottom Bar ── */}
-      <div className="max-w-7xl mx-auto px-15 py-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-15 py-6 flex flex-col md:flex-row items-center justify-between gap-2">
         <p className="text-white/25 text-xs">
           © {new Date().getFullYear()} {business.name} (RC: {business.rc}). All rights reserved. {business.address}.
         </p>

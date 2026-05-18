@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 const AboutPreview = () => {
   return (
-    <section className="bg-white grid grid-cols-2">
+    <section className="bg-white grid grid-cols-1 md:grid-cols-2">
 
       {/* Image Panel — placeholder until real photo is wired in */}
       <div className="relative min-h-80 bg-navy-light flex items-center justify-center overflow-hidden">

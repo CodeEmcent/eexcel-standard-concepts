@@ -9,7 +9,7 @@ const stats = [
 
 const AboutHero = () => {
   return (
-    <section className="bg-navy py-20 relative overflow-hidden">
+    <section className="bg-navy py-20 md:py-20 relative overflow-hidden">
 
       {/* Grid overlay */}
       <div
@@ -23,7 +23,7 @@ const AboutHero = () => {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-15 grid grid-cols-2 gap-20 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-15 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center">
 
         {/* Left — Text */}
         <div>
