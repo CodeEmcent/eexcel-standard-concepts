@@ -11,11 +11,11 @@ const trustItems = [
 
 const TrustBar = () => {
   return (
-    <div className="bg-gold py-5">
-      <div className="max-w-7xl mx-auto px-15 flex items-center justify-between gap-4 flex-wrap">
+    <div className="bg-gold py-4 overflow-x-auto">
+      <div className="max-w-7xl mx-auto px-6 md:px-15 flex items-center gap-6 md:justify-between min-w-max md:min-w-0">
         {trustItems.map(({ icon: Icon, text }) => (
-          <div key={text} className="flex items-center gap-2 text-navy font-semibold text-sm">
-            <Icon size={16} strokeWidth={2.5} />
+          <div key={text} className="flex items-center gap-2 text-navy font-semibold text-xs md:text-sm whitespace-nowrap">
+            <Icon size={15} strokeWidth={2.5} />
             <span>{text}</span>
           </div>
         ))}

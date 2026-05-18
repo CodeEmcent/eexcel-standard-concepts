@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, MapPin, Clock } from 'lucide-react';
 import business from '../../data/business';
+import { crane, yard, singleCables, earthing } from "../../assets/images";
+
 
 const AboutBody = () => {
   return (
-    <section className="bg-off-white py-20">
-      <div className="max-w-7xl mx-auto px-15 grid grid-cols-2 gap-16 items-start">
+    <section className="bg-off-white py-12 md:py-20">
+      <div className="max-w-7xl mx-auto px-6 md:px-15 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-start">
 
         {/* Left — Business Description */}
         <div>
@@ -47,32 +49,27 @@ const AboutBody = () => {
         <div className="flex flex-col gap-6">
 
           {/* Operations photo grid — placeholders until real images wired in */}
-          <div>
-            <p className="text-gold text-xs font-bold uppercase tracking-[3px] mb-4">
-              Our Operations
-            </p>
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                'Cable drum delivery operations',
-                'Transformer yard stock',
-                'Single cable warehouse',
-                'Earthing materials stock',
-              ].map((caption) => (
-                <div
-                  key={caption}
-                  className="rounded-lg overflow-hidden bg-navy-light h-44 flex items-end relative"
-                >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-white/10 font-serif text-4xl font-black select-none">
-                      EESC
-                    </div>
-                  </div>
-                  <div className="relative z-10 w-full bg-navy/60 px-3 py-2">
-                    <p className="text-white/60 text-xs leading-tight">{caption}</p>
-                  </div>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { img: crane,        caption: 'Cable drum delivery operations' },
+              { img: yard,         caption: 'Transformer yard stock'         },
+              { img: singleCables, caption: 'Single cable warehouse'         },
+              { img: earthing,     caption: 'Earthing materials stock'       },
+            ].map(({ img, caption }) => (
+              <div
+                key={caption}
+                className="rounded-lg overflow-hidden h-44 relative"
+              >
+                <img
+                  src={img}
+                  alt={caption}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-navy/60 px-3 py-2">
+                  <p className="text-white/70 text-xs leading-tight">{caption}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           {/* Location Card */}
