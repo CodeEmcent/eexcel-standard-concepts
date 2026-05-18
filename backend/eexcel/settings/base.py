@@ -7,7 +7,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Environment
 env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR.parent, '.env'))
+
+# Read .env file if it exists (local development)
+env_file = BASE_DIR.parent / '.env'
+if env_file.exists():
+    environ.Env.read_env(str(env_file))
 
 SECRET_KEY = env('DJANGO_SECRET_KEY', default='change-me-in-production')
 
