@@ -20,7 +20,7 @@ DATABASES = {
 CORS_ALLOWED_ORIGINS = [
     'https://eexcel-standard-concepts.vercel.app',
 ]
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
 
 STATIC_ROOT = '/home/Emcent/eexcel-standard-concepts/backend/staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
